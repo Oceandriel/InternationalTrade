@@ -26,16 +26,12 @@ mkdir -p "$DEPLOY_PATH"
 cd "$DEPLOY_PATH"
 
 echo "==> [1/5] Syncing repository (docker-compose.yml / nginx config)..."
-if [ -d ".git" ]; then
+if [ -d .git ]; then
   git fetch --depth 1 origin main
   git reset --hard origin/main
 else
-  git init
-  git remote add origin "$REPO_URL" || git remote set-url origin "$REPO_URL"
-  git fetch --depth 1 origin main
-  git checkout -B main origin/main -f
+  git clone --depth 1 "$REPO_URL" .
 fi
-
 echo "==> [2/5] Checking .env..."
 if [ ! -f .env ]; then
   cp .env.example .env
