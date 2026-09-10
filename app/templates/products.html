@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<section class="page-hero">
+  <div class="container">
+    <p class="section-index reveal">Catalog</p>
+    <p class="eyebrow reveal">Products &amp; Capabilities</p>
+    <h1 class="h1 reveal">What we manufacture for the world</h1>
+    <p class="lead reveal" style="max-width:680px;">
+      Every product line is engineered in-house and shipped factory-direct — with material certificates,
+      inspection reports and your private label. Don't see your exact part? We build to drawings.
+    </p>
+  </div>
+</section>
+
+<section class="section section--tinted" style="padding-top:56px;">
+  <div class="container">
+    <div class="filter-bar reveal" role="tablist" aria-label="Product categories">
+      <button class="filter-btn is-active" data-filter="all">All Products</button>
+      {% for cat in categories %}
+      <button class="filter-btn" data-filter="{{ cat }}">{{ cat }}</button>
+      {% endfor %}
+    </div>
+
+    <div class="grid-3" id="productGrid">
+      {% for p in products %}
+      <a href="/products/{{ p.slug }}" class="pcard reveal" data-category="{{ p.category }}">
+        <div class="pcard__media">
+          <img src="{{ p.image }}" alt="{{ p.name }}" loading="lazy">
+        </div>
+        <div class="pcard__body">
+          <span class="pcard__cat">{{ p.category }}</span>
+          <h3 class="pcard__title">{{ p.name }}</h3>
+          <p class="pcard__tag">{{ p.tagline }}</p>
+          <span class="pcard__more">Discover <span>→</span></span>
+        </div>
+      </a>
+      {% endfor %}
+    </div>
+
+    <p class="catalog-note reveal" id="catalogNote" hidden>No products in this category yet — please <a href="/contact">ask us</a>, we likely make it.</p>
+  </div>
+</section>
+
+<section class="cta cta--compact">
+  <div class="container cta__content reveal">
+    <h2 class="cta__title">Need a custom part?<br>We manufacture <em>to your drawings.</em></h2>
+    <div class="cta__actions">
+      <a href="/contact" class="btn btn--accent">Send Your Drawings</a>
+      <a href="mailto:{{ s.company_email }}" class="btn btn--ghost-dark">Email Engineering</a>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

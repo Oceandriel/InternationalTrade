@@ -1,0 +1,22 @@
+# 环境变量与数据绝不进入镜像
+.env
+data/
+*.db
+
+# Python 缓存
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Git / IDE / OS
+.git/
+.github/
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+
+# 文档与日志
+*.log
+README.md

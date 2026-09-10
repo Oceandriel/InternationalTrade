@@ -1,0 +1,112 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<section class="page-hero">
+  <div class="container">
+    <p class="section-index reveal">Contact</p>
+    <p class="eyebrow reveal">Start a Project</p>
+    <h1 class="h1 reveal">Tell us what you need.<br>We quote within <em>24 hours.</em></h1>
+    <p class="lead reveal" style="max-width:680px;">
+      Send drawings, quantities and your target price — or simply ask a question.
+      Our export sales team replies to every inquiry within one business day.
+    </p>
+  </div>
+</section>
+
+<section class="section" style="padding-top:40px;">
+  <div class="container contact-grid">
+
+    <div class="contact-info reveal">
+      <div class="contact-card">
+        <span class="contact-card__label">Email</span>
+        <a href="mailto:{{ s.company_email }}">{{ s.company_email }}</a>
+      </div>
+      <div class="contact-card">
+        <span class="contact-card__label">Phone</span>
+        <a href="tel:{{ s.company_phone | replace(' ', '') | replace('-', '') }}">{{ s.company_phone }}</a>
+      </div>
+      {% if s.company_whatsapp %}
+      <div class="contact-card">
+        <span class="contact-card__label">WhatsApp</span>
+        <a href="https://wa.me/{{ s.company_whatsapp | replace(' ', '') | replace('+', '') | replace('-', '') }}" target="_blank" rel="noopener">{{ s.company_whatsapp }}</a>
+      </div>
+      {% endif %}
+      <div class="contact-card">
+        <span class="contact-card__label">Factory Address</span>
+        <p>{{ s.company_address }}</p>
+      </div>
+      <div class="contact-card">
+        <span class="contact-card__label">Business Hours</span>
+        <p>{{ s.company_hours }}</p>
+      </div>
+
+      <div class="contact-social">
+        {% if s.linkedin_url %}<a href="{{ s.linkedin_url }}" target="_blank" rel="noopener">LinkedIn →</a>{% endif %}
+        {% if s.facebook_url %}<a href="{{ s.facebook_url }}" target="_blank" rel="noopener">Facebook →</a>{% endif %}
+        {% if s.youtube_url %}<a href="{{ s.youtube_url }}" target="_blank" rel="noopener">YouTube →</a>{% endif %}
+        {% if s.instagram_url %}<a href="{{ s.instagram_url }}" target="_blank" rel="noopener">Instagram →</a>{% endif %}
+      </div>
+    </div>
+
+    <form class="inquiry-form reveal" id="inquiryForm" novalidate>
+      <div class="form-row form-row--double">
+        <div class="form-field">
+          <label for="f-name">Full Name <i>*</i></label>
+          <input type="text" id="f-name" name="name" autocomplete="name" required maxlength="100" placeholder="John Smith">
+        </div>
+        <div class="form-field">
+          <label for="f-email">Business Email <i>*</i></label>
+          <input type="email" id="f-email" name="email" autocomplete="email" required maxlength="200" placeholder="john@company.com">
+        </div>
+      </div>
+
+      <div class="form-row form-row--double">
+        <div class="form-field">
+          <label for="f-company">Company</label>
+          <input type="text" id="f-company" name="company" autocomplete="organization" maxlength="120" placeholder="Your company">
+        </div>
+        <div class="form-field">
+          <label for="f-country">Country</label>
+          <input type="text" id="f-country" name="country" autocomplete="country-name" maxlength="80" placeholder="Germany">
+        </div>
+      </div>
+
+      <div class="form-row form-row--double">
+        <div class="form-field">
+          <label for="f-phone">Phone / WhatsApp</label>
+          <input type="tel" id="f-phone" name="phone" autocomplete="tel" maxlength="40" placeholder="+49 170 000 0000">
+        </div>
+        <div class="form-field">
+          <label for="f-product">Product Interest</label>
+          <select id="f-product" name="product_interest">
+            <option value="">General inquiry</option>
+            {% for p in products %}
+            <option value="{{ p.name }}" data-slug="{{ p.slug }}">{{ p.name }}</option>
+            {% endfor %}
+            <option value="Custom project (drawings)">Custom project (I have drawings)</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-field">
+        <label for="f-message">Your Message <i>*</i></label>
+        <textarea id="f-message" name="message" rows="6" required maxlength="4000"
+                  placeholder="Tell us about your project: material, quantity, target price, delivery date..."></textarea>
+      </div>
+
+      <!-- 蜜罐字段：对真实用户隐藏，用于拦截机器人 -->
+      <div class="hp-field" aria-hidden="true">
+        <label for="f-website">Website (leave empty)</label>
+        <input type="text" id="f-website" name="website" tabindex="-1" autocomplete="off">
+      </div>
+
+      <button type="submit" class="btn btn--accent btn--block" id="submitBtn">Send Inquiry →</button>
+      <p class="form-status" id="formStatus" role="status"></p>
+      <p class="form-note">We respect your privacy. Your details are used only to respond to this inquiry.</p>
+    </form>
+
+  </div>
+</section>
+
+{% endblock %}

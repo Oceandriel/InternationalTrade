@@ -1,0 +1,137 @@
+{% extends "base.html" %}
+
+{% block head_extra %}
+{% set product_json = {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": product.name,
+  "description": product.description,
+  "category": product.category,
+  "image": product.image,
+  "brand": {"@type": "Brand", "name": s.company_short},
+  "manufacturer": {"@type": "Organization", "name": s.company_name},
+  "offers": {
+    "@type": "AggregateOffer",
+    "priceCurrency": "USD",
+    "lowPrice": "0",
+    "availability": "https://schema.org/InStock",
+    "url": s.domain_clean + "/products/" + product.slug
+  }
+} %}
+<script type="application/ld+json">{{ product_json | tojson }}</script>
+{% set crumbs = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type": "ListItem", "position": 1, "name": "Home", "item": s.domain_clean + "/"},
+    {"@type": "ListItem", "position": 2, "name": "Products", "item": s.domain_clean + "/products"},
+    {"@type": "ListItem", "position": 3, "name": product.name, "item": s.domain_clean + "/products/" + product.slug}
+  ]
+} %}
+<script type="application/ld+json">{{ crumbs | tojson }}</script>
+{% endblock %}
+
+{% block content %}
+
+<section class="section detail-hero">
+  <div class="container">
+    <nav class="breadcrumb reveal" aria-label="Breadcrumb">
+      <a href="/">Home</a><span>/</span><a href="/products">Products</a><span>/</span>
+      <span class="breadcrumb__current">{{ product.name }}</span>
+    </nav>
+
+    <div class="detail-grid">
+      <div class="detail__media reveal">
+        <img src="{{ product.image }}" alt="{{ product.name }}">
+      </div>
+      <div class="detail__info reveal">
+        <span class="pcard__cat">{{ product.category }}</span>
+        <h1 class="h1">{{ product.name }}</h1>
+        <p class="lead">{{ product.tagline }}</p>
+
+        <ul class="checklist">
+          {% for f in product.features %}
+          <li>{{ f }}</li>
+          {% endfor %}
+        </ul>
+
+        <div class="detail__actions">
+          <a href="/contact?product={{ product.slug }}" class="btn btn--accent">Request a Quote</a>
+          <a href="mailto:{{ s.company_email }}?subject=Quote%20request%3A%20{{ product.name | urlencode }}" class="btn btn--outline-dark">Email Us</a>
+        </div>
+
+        <div class="detail__chips">
+          {% for key, val in product.specs.items() %}
+          <span class="chip"><strong>{{ key }}:</strong> {{ val }}</span>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section--tinted">
+  <div class="container detail-bottom">
+    <div class="reveal">
+      <p class="eyebrow">Overview</p>
+      <h2 class="h2" style="font-size:clamp(1.6rem,3vw,2.2rem);">Product description</h2>
+      <p class="body-text" style="max-width:720px;">{{ product.description }}</p>
+      <p class="body-text" style="max-width:720px;"><strong>Typical applications:</strong> {{ product.applications }}</p>
+    </div>
+
+    <div class="spec-table reveal">
+      <h3 class="spec-table__title">Technical Specifications</h3>
+      <table>
+        <tbody>
+          {% for key, val in product.specs.items() %}
+          <tr>
+            <th>{{ key }}</th>
+            <td>{{ val }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+{% if related %}
+<section class="section">
+  <div class="container">
+    <div class="section-head reveal">
+      <div>
+        <p class="eyebrow">Keep Exploring</p>
+        <h2 class="h2">Related products</h2>
+      </div>
+      <a href="/products" class="link-arrow link-arrow--dark">View all products <span>→</span></a>
+    </div>
+    <div class="grid-3">
+      {% for p in related %}
+      <a href="/products/{{ p.slug }}" class="pcard reveal">
+        <div class="pcard__media">
+          <img src="{{ p.image }}" alt="{{ p.name }}" loading="lazy">
+        </div>
+        <div class="pcard__body">
+          <span class="pcard__cat">{{ p.category }}</span>
+          <h3 class="pcard__title">{{ p.name }}</h3>
+          <p class="pcard__tag">{{ p.tagline }}</p>
+          <span class="pcard__more">Discover <span>→</span></span>
+        </div>
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}
+
+<section class="cta cta--compact">
+  <div class="container cta__content reveal">
+    <h2 class="cta__title">Ready to order <em>{{ product.category | lower }}</em>?</h2>
+    <p class="cta__sub">Tell us quantity, material and target delivery — we quote within 24 hours.</p>
+    <div class="cta__actions">
+      <a href="/contact?product={{ product.slug }}" class="btn btn--accent">Request This Product</a>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

@@ -1,0 +1,166 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<section class="page-hero page-hero--about">
+  <img class="page-hero__bg"
+       src="{{ img('wide shot of modern advanced manufacturing plant floor with rows of CNC machines and robotic automation, airy bright industrial architecture, editorial corporate photography, soft daylight', 'landscape_16_9') }}"
+       alt="{{ s.company_name }} factory floor">
+  <div class="page-hero__veil"></div>
+  <div class="container">
+    <p class="section-index section-index--light reveal">About</p>
+    <p class="eyebrow eyebrow--light reveal">The Company</p>
+    <h1 class="h1 h1--light reveal">Built on precision.<br>Trusted <em>worldwide.</em></h1>
+    <p class="lead lead--light reveal" style="max-width:720px;">
+      Since {{ s.company_founded_year }}, {{ s.company_name }} has grown from a small machining workshop into a
+      full-spectrum manufacturing partner for importers and industrial brands in {{ s.company_countries }} countries.
+    </p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container split">
+    <div class="split__media reveal">
+      <img src="{{ img('quality control inspector in white gloves measuring precision metal component with digital caliper in high-tech inspection laboratory, macro detail, professional industrial photography, clean bright background', 'landscape_4_3') }}"
+           alt="Quality inspection at our facility" loading="lazy">
+    </div>
+    <div class="split__text reveal">
+      <p class="eyebrow">Our Story</p>
+      <h2 class="h2">One partner, from drawing to dock</h2>
+      <p class="body-text">We started with a single CNC lathe and a simple belief: overseas buyers deserve a
+        Chinese manufacturer that answers fast, measures honestly and ships what was promised. Today our
+        {{ s.company_factory_area }} m² campus houses machining, fabrication, automation assembly and a
+        calibrated quality laboratory.</p>
+      <p class="body-text">{{ s.company_employees }} engineers and operators work two shifts so that your lead
+        times shrink — and our English-speaking export team keeps every step documented, photographed and
+        traceable.</p>
+      <ul class="checklist">
+        <li>Vertically integrated: machining, fabrication, automation, QC in-house</li>
+        <li>Export documentation, Incoterms and door-to-door logistics handled</li>
+        <li>Private label, neutral packaging and custom branding available</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="section section--dark">
+  <div class="container stats-band">
+    <div class="stat reveal">
+      <span class="stat__num" data-count="{{ s.company_founded_year }}">{{ s.company_founded_year }}</span>
+      <span class="stat__label">Year Founded</span>
+    </div>
+    <div class="stat reveal">
+      <span class="stat__num" data-count="{{ s.company_employees }}">{{ s.company_employees }}</span>
+      <span class="stat__label">Employees</span>
+    </div>
+    <div class="stat reveal">
+      <span class="stat__num" data-count="{{ s.company_countries | replace('+', '') }}" data-suffix="+">{{ s.company_countries }}</span>
+      <span class="stat__label">Export Countries</span>
+    </div>
+    <div class="stat reveal">
+      <span class="stat__num" data-count="{{ s.company_factory_area }}" data-suffix=" m²">{{ s.company_factory_area }} m²</span>
+      <span class="stat__label">Facility Area</span>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section-head reveal">
+      <div>
+        <p class="section-index">Values</p>
+        <p class="eyebrow">What We Stand For</p>
+        <h2 class="h2">The standards behind every shipment</h2>
+      </div>
+    </div>
+    <div class="grid-4">
+      <div class="feature reveal">
+        <span class="feature__num">A.</span>
+        <h3 class="feature__title">Measure Honestly</h3>
+        <p class="feature__text">Every critical dimension is CMM-checked. You receive the real report — not a curated one.</p>
+      </div>
+      <div class="feature reveal">
+        <span class="feature__num">B.</span>
+        <h3 class="feature__title">Answer Fast</h3>
+        <p class="feature__text">Quotes in 24 hours, problems in hours — not days. Your deadlines are our production plan.</p>
+      </div>
+      <div class="feature reveal">
+        <span class="feature__num">C.</span>
+        <h3 class="feature__title">Engineer First</h3>
+        <p class="feature__text">We push back on bad drawings with DFM feedback before a chip is cut. Saving you money is our job.</p>
+      </div>
+      <div class="feature reveal">
+        <span class="feature__num">D.</span>
+        <h3 class="feature__title">Own the Outcome</h3>
+        <p class="feature__text">If we ship it, we stand behind it — replacement, credit or rework. In writing.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section--tinted">
+  <div class="container">
+    <div class="section-head reveal">
+      <div>
+        <p class="section-index">Milestones</p>
+        <p class="eyebrow">Our Journey</p>
+        <h2 class="h2">Fifteen years of building trust</h2>
+      </div>
+    </div>
+    <div class="timeline">
+      <div class="timeline__item reveal">
+        <span class="timeline__year">{{ s.company_founded_year }}</span>
+        <h3 class="timeline__title">The first lathe</h3>
+        <p class="timeline__text">Founded as a precision CNC job shop serving local machinery makers.</p>
+      </div>
+      <div class="timeline__item reveal">
+        <span class="timeline__year">{{ s.company_founded_year + 4 }}</span>
+        <h3 class="timeline__title">Going global</h3>
+        <p class="timeline__text">First export orders to Europe and North America; ISO 9001 certified.</p>
+      </div>
+      <div class="timeline__item reveal">
+        <span class="timeline__year">{{ s.company_founded_year + 8 }}</span>
+        <h3 class="timeline__title">Automation division</h3>
+        <p class="timeline__text">Opened the automation engineering division and doubled factory space.</p>
+      </div>
+      <div class="timeline__item reveal">
+        <span class="timeline__year">{{ s.company_founded_year + 12 }}</span>
+        <h3 class="timeline__title">Smart manufacturing</h3>
+        <p class="timeline__text">Digital MES rollout, in-house CMM laboratory and {{ s.company_employees }}-strong team.</p>
+      </div>
+      <div class="timeline__item reveal">
+        <span class="timeline__year">Today</span>
+        <h3 class="timeline__title">{{ s.company_countries }} countries and counting</h3>
+        <p class="timeline__text">Serving brands across four continents with factory-direct, accountable manufacturing.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="certs reveal">
+      <span class="certs__label">Certifications &amp; Compliance</span>
+      <div class="certs__list">
+        <span class="cert">ISO 9001:2015</span>
+        <span class="cert">CE</span>
+        <span class="cert">RoHS</span>
+        <span class="cert">IATF 16949 Compatible</span>
+        <span class="cert">EN 10204 3.1</span>
+        <span class="cert">DLC Premium</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta cta--compact">
+  <div class="container cta__content reveal">
+    <h2 class="cta__title">Audit us. Challenge us.<br><em>Then place the order.</em></h2>
+    <div class="cta__actions">
+      <a href="/contact" class="btn btn--accent">Talk to Our Team</a>
+      <a href="/products" class="btn btn--ghost-dark">See Products</a>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

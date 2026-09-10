@@ -1,0 +1,204 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<!-- ============================= HERO ============================= -->
+<section class="hero">
+  <img class="hero__bg"
+       src="{{ img('modern precision manufacturing factory interior with robotic arms and CNC machines, cinematic dark moody lighting, high-end industrial photography, wide angle, deep blue accent lights', 'landscape_16_9') }}"
+       alt="{{ s.company_name }} precision manufacturing facility">
+  <div class="hero__veil"></div>
+
+  <div class="container hero__content">
+    <p class="hero__eyebrow reveal">
+      <span class="hero__eyebrow-line"></span>
+      Precision Manufacturing · Since {{ s.company_founded_year }} · Exporting to {{ s.company_countries }} Countries
+    </p>
+    <h1 class="hero__title reveal">
+      Engineered Parts.<br>
+      <em>Powering</em> Industries<br>Across the World.
+    </h1>
+    <p class="hero__sub reveal">{{ s.company_description }} We manufacture to your drawings — factory-direct, audited quality, shipped worldwide.</p>
+    <div class="hero__actions reveal">
+      <a href="/contact" class="btn btn--accent">Request a Quote</a>
+      <a href="/products" class="btn btn--ghost-light">Explore Products <span class="btn__arrow">→</span></a>
+    </div>
+  </div>
+
+  <div class="container hero__stats reveal">
+    <div class="hero__stat">
+      <span class="hero__stat-num" data-count="{{ s.company_founded_year }}">{{ s.company_founded_year }}</span>
+      <span class="hero__stat-label">Founded</span>
+    </div>
+    <div class="hero__stat">
+      <span class="hero__stat-num" data-count="{{ s.company_employees }}">{{ s.company_employees }}</span>
+      <span class="hero__stat-label">Skilled Employees</span>
+    </div>
+    <div class="hero__stat">
+      <span class="hero__stat-num" data-count="{{ s.company_countries | replace('+', '') }}" data-suffix="+">{{ s.company_countries }}</span>
+      <span class="hero__stat-label">Export Countries</span>
+    </div>
+    <div class="hero__stat">
+      <span class="hero__stat-num" data-count="{{ s.company_factory_area }}" data-suffix=" m²">{{ s.company_factory_area }} m²</span>
+      <span class="hero__stat-label">Factory Area</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============================= MARQUEE ============================= -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee__track">
+    {% for item in ['ISO 9001 Certified Quality', 'OEM / ODM Welcome', 'Factory-Direct Pricing', 'DFM Review in 24h', 'Global Door-to-Door Shipping', 'Drawings to Delivery'] %}
+    <span class="marquee__item">{{ item }}<i>◆</i></span>
+    {% endfor %}
+    {% for item in ['ISO 9001 Certified Quality', 'OEM / ODM Welcome', 'Factory-Direct Pricing', 'DFM Review in 24h', 'Global Door-to-Door Shipping', 'Drawings to Delivery'] %}
+    <span class="marquee__item">{{ item }}<i>◆</i></span>
+    {% endfor %}
+  </div>
+</div>
+
+<!-- ============================= ABOUT TEASER ============================= -->
+<section class="section">
+  <div class="container split">
+    <div class="split__text reveal">
+      <p class="section-index">01</p>
+      <p class="eyebrow">Who We Are</p>
+      <h2 class="h2">A manufacturing partner that ships <em>precision</em>, not just parts.</h2>
+      <p class="lead">{{ s.company_name }} is a vertically integrated manufacturer headquartered in China,
+        serving importers, OEMs and industrial brands across {{ s.company_countries }} countries. From a single
+        prototype to full production runs, our engineers treat your drawings as our own.</p>
+      <p class="body-text">In-house CNC machining, automation engineering, fabrication and QC mean one contract,
+        one accountable partner — and no trading-company markup. Every shipment leaves with material
+        certificates, inspection reports and your label.</p>
+      <a href="/about" class="link-arrow">More about the company <span>→</span></a>
+    </div>
+    <div class="split__media reveal">
+      <img src="{{ img('engineers in clean modern factory reviewing engineering drawings on laptop beside CNC machine, bright minimalist industrial space, editorial documentary photography, natural light', 'landscape_4_3') }}"
+           alt="Engineers reviewing production drawings" loading="lazy">
+      <div class="split__badge">
+        <strong>15+</strong>
+        <span>years of export<br>manufacturing</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================= FEATURED PRODUCTS ============================= -->
+<section class="section section--tinted">
+  <div class="container">
+    <div class="section-head reveal">
+      <div>
+        <p class="section-index">02</p>
+        <p class="eyebrow">Capabilities</p>
+        <h2 class="h2">What we make for you</h2>
+      </div>
+      <a href="/products" class="link-arrow link-arrow--dark">View all products <span>→</span></a>
+    </div>
+
+    <div class="grid-3">
+      {% for p in featured %}
+      <a href="/products/{{ p.slug }}" class="pcard reveal">
+        <div class="pcard__media">
+          <img src="{{ p.image }}" alt="{{ p.name }}" loading="lazy">
+        </div>
+        <div class="pcard__body">
+          <span class="pcard__cat">{{ p.category }}</span>
+          <h3 class="pcard__title">{{ p.name }}</h3>
+          <p class="pcard__tag">{{ p.tagline }}</p>
+          <span class="pcard__more">Discover <span>→</span></span>
+        </div>
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- ============================= WHY US ============================= -->
+<section class="section">
+  <div class="container">
+    <div class="section-head reveal">
+      <div>
+        <p class="section-index">03</p>
+        <p class="eyebrow">Why {{ s.company_short }}</p>
+        <h2 class="h2">Built for demanding B2B buyers</h2>
+      </div>
+    </div>
+
+    <div class="grid-4">
+      <div class="feature reveal">
+        <span class="feature__num">01</span>
+        <h3 class="feature__title">In-House, End to End</h3>
+        <p class="feature__text">Machining, fabrication, automation engineering, assembly and QC under one roof — no subcontracted surprises, one accountable partner.</p>
+      </div>
+      <div class="feature reveal">
+        <span class="feature__num">02</span>
+        <h3 class="feature__title">Audited Quality</h3>
+        <p class="feature__text">ISO 9001 system, calibrated CMM inspection, material certificates and full inspection reports with every batch. PPAP on request.</p>
+      </div>
+      <div class="feature reveal">
+        <span class="feature__num">03</span>
+        <h3 class="feature__title">Export Expertise</h3>
+        <p class="feature__text">{{ s.company_countries }} countries served: we handle export docs, Incoterms, customs clearance and door-to-door logistics for you.</p>
+      </div>
+      <div class="feature reveal">
+        <span class="feature__num">04</span>
+        <h3 class="feature__title">24-Hour Response</h3>
+        <p class="feature__text">DFM feedback and quotations within one business day. English-speaking engineers, your time zone covered.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================= PROCESS ============================= -->
+<section class="section section--dark">
+  <div class="container">
+    <div class="section-head reveal">
+      <div>
+        <p class="section-index section-index--light">04</p>
+        <p class="eyebrow eyebrow--light">How It Works</p>
+        <h2 class="h2 h2--light">From drawings to delivery in four steps</h2>
+      </div>
+    </div>
+
+    <div class="steps">
+      <div class="step reveal">
+        <span class="step__num">01</span>
+        <h3 class="step__title">Send Your Drawings</h3>
+        <p class="step__text">Upload CAD files, specs or samples. Tell us quantities, target price and timeline.</p>
+      </div>
+      <div class="step reveal">
+        <span class="step__num">02</span>
+        <h3 class="step__title">DFM &amp; Quotation</h3>
+        <p class="step__text">Our engineers review manufacturability and reply with a detailed quote within 24 hours.</p>
+      </div>
+      <div class="step reveal">
+        <span class="step__num">03</span>
+        <h3 class="step__title">Production &amp; QC</h3>
+        <p class="step__text">Samples first, then production with in-process inspection and a full final report.</p>
+      </div>
+      <div class="step reveal">
+        <span class="step__num">04</span>
+        <h3 class="step__title">Global Delivery</h3>
+        <p class="step__text">Export packaging, booking and door-to-door shipping by sea, air or express — tracked.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================= CTA ============================= -->
+<section class="cta">
+  <img class="cta__bg"
+       src="{{ img('container cargo port at dusk with large cargo ship and gantry cranes, long exposure deep blue sky, cinematic editorial logistics photography', 'landscape_16_9') }}"
+       alt="Global shipping port" loading="lazy">
+  <div class="cta__veil"></div>
+  <div class="container cta__content reveal">
+    <h2 class="cta__title">Have a product to build?<br>Let's make it <em>right.</em></h2>
+    <p class="cta__sub">Send your drawings today — get DFM feedback and a quotation within 24 hours.</p>
+    <div class="cta__actions">
+      <a href="/contact" class="btn btn--accent">Request a Quote</a>
+      <a href="mailto:{{ s.company_email }}" class="btn btn--ghost-light">{{ s.company_email }}</a>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

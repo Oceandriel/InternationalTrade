@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ page_title }}</title>
+  <meta name="description" content="{{ page_description }}">
+  <meta name="keywords" content="{{ s.seo_keywords }}">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="{{ canonical }}">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="{{ s.company_name }}">
+  <meta property="og:title" content="{{ page_title }}">
+  <meta property="og:description" content="{{ page_description }}">
+  <meta property="og:url" content="{{ canonical }}">
+  <meta property="og:image"
+        content="{{ s.domain_clean + s.seo_og_image if s.seo_og_image else img('modern precision manufacturing factory interior with robotic arms and CNC machines, cinematic dark moody lighting, high-end industrial photography, blue accent lights', 'landscape_16_9') }}">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{ page_title }}">
+  <meta name="twitter:description" content="{{ page_description }}">
+
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230e1014'/%3E%3Ctext x='16' y='23' font-family='Arial,sans-serif' font-weight='700' font-size='18' fill='%23ffffff' text-anchor='middle'%3EN%3C/text%3E%3C/svg%3E">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/css/style.css">
+
+  {% set org = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": s.company_name,
+    "alternateName": s.company_short,
+    "url": s.domain_clean,
+    "description": s.company_description,
+    "email": s.company_email,
+    "telephone": s.company_phone,
+    "foundingDate": s.company_founded_year|string,
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": s.company_address
+    },
+    "sameAs": [s.linkedin_url, s.facebook_url, s.youtube_url, s.instagram_url] | select('!=', '') | list
+  } %}
+  <script type="application/ld+json">{{ org | tojson }}</script>
+  {% block head_extra %}{% endblock %}
+</head>
+<body>
+
+<header class="nav" id="nav">
+  <div class="container nav__inner">
+    <a href="/" class="nav__brand">{{ s.company_short }}<span class="nav__brand-dot">.</span></a>
+
+    <nav class="nav__links" id="navLinks" aria-label="Main navigation">
+      <a href="/" class="nav__link {% if current_path == '/' %}is-active{% endif %}">Home</a>
+      <a href="/products" class="nav__link {% if current_path.startswith('/products') %}is-active{% endif %}">Products</a>
+      <a href="/about" class="nav__link {% if current_path == '/about' %}is-active{% endif %}">About</a>
+      <a href="/contact" class="nav__link {% if current_path == '/contact' %}is-active{% endif %}">Contact</a>
+      <a href="mailto:{{ s.company_email }}" class="nav__email">{{ s.company_email }}</a>
+      <a href="/contact" class="btn btn--accent btn--sm nav__cta">Get a Quote</a>
+    </nav>
+
+    <button class="nav__toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main>
+  {% block content %}{% endblock %}
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer__top">
+      <div class="footer__brand-col">
+        <a href="/" class="footer__brand">{{ s.company_short }}<span>.</span></a>
+        <p class="footer__tagline">{{ s.company_tagline }}</p>
+        <div class="footer__social">
+          {% if s.linkedin_url %}<a href="{{ s.linkedin_url }}" target="_blank" rel="noopener" aria-label="LinkedIn">in</a>{% endif %}
+          {% if s.facebook_url %}<a href="{{ s.facebook_url }}" target="_blank" rel="noopener" aria-label="Facebook">f</a>{% endif %}
+          {% if s.youtube_url %}<a href="{{ s.youtube_url }}" target="_blank" rel="noopener" aria-label="YouTube">▶</a>{% endif %}
+          {% if s.instagram_url %}<a href="{{ s.instagram_url }}" target="_blank" rel="noopener" aria-label="Instagram">◎</a>{% endif %}
+        </div>
+      </div>
+
+      <div class="footer__col">
+        <h4 class="footer__heading">Explore</h4>
+        <a href="/">Home</a>
+        <a href="/products">Products</a>
+        <a href="/about">About Us</a>
+        <a href="/contact">Request a Quote</a>
+      </div>
+
+      <div class="footer__col">
+        <h4 class="footer__heading">Products</h4>
+        {% for p in catalog.get_products()[:5] %}
+        <a href="/products/{{ p.slug }}">{{ p.name }}</a>
+        {% endfor %}
+      </div>
+
+      <div class="footer__col footer__contact-col">
+        <h4 class="footer__heading">Contact</h4>
+        <a href="mailto:{{ s.company_email }}">{{ s.company_email }}</a>
+        <a href="tel:{{ s.company_phone | replace(' ', '') | replace('-', '') }}">{{ s.company_phone }}</a>
+        {% if s.company_whatsapp %}<a href="https://wa.me/{{ s.company_whatsapp | replace(' ', '') | replace('+', '') | replace('-', '') }}" target="_blank" rel="noopener">WhatsApp: {{ s.company_whatsapp }}</a>{% endif %}
+        <p class="footer__address">{{ s.company_address }}</p>
+        <p class="footer__hours">{{ s.company_hours }}</p>
+      </div>
+    </div>
+
+    <div class="footer__bottom">
+      <p>© {{ now_year }} {{ s.company_name }}. All rights reserved.</p>
+      <p class="footer__bottom-right">Precision manufacturing · Exporting to {{ s.company_countries }} countries worldwide</p>
+    </div>
+  </div>
+</footer>
+
+<script src="/static/js/main.js" defer></script>
+</body>
+</html>

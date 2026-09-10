@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="error-page">
+  <div class="container error-page__content reveal">
+    <p class="section-index">500</p>
+    <h1 class="h1">Something went<br><em>wrong on our side.</em></h1>
+    <p class="lead">We have been notified. Please try again, or contact us directly — we usually reply within hours.</p>
+    <div class="cta__actions" style="justify-content:center;">
+      <a href="/contact" class="btn btn--accent">Contact Us</a>
+      <a href="mailto:{{ s.company_email }}" class="btn btn--outline-dark">{{ s.company_email }}</a>
+    </div>
+  </div>
+</section>
+{% endblock %}

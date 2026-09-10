@@ -1,0 +1,155 @@
+{
+  "categories": [
+    "Precision Machining",
+    "Industrial Automation",
+    "Metal Fabrication",
+    "Hydraulic Systems",
+    "Smart Lighting"
+  ],
+  "products": [
+    {
+      "slug": "precision-cnc-components",
+      "name": "Precision CNC Machined Components",
+      "category": "Precision Machining",
+      "tagline": "Tight-tolerance parts machined to your drawings, in batches from 1 to 100,000.",
+      "description": "5-axis CNC turning and milling for stainless steel, aluminum, brass and engineering plastics. Every batch ships with full dimensional inspection reports and material certificates, ready for your assembly line.",
+      "features": [
+        "5-axis CNC turning / milling, tolerance up to ±0.005 mm",
+        "Stainless steel, aluminum, brass, titanium, PEEK",
+        "Material certificates (EN 10204 3.1) & PPAP on request",
+        "Surface treatment: anodizing, plating, passivation, polishing"
+      ],
+      "specs": {
+        "Process": "CNC turning / milling / grinding",
+        "Tolerance": "±0.005 mm",
+        "MOQ": "1 piece",
+        "Lead Time": "7 - 25 days",
+        "Certifications": "ISO 9001, IATF 16949 compatible"
+      },
+      "applications": "Automotive, medical devices, aerospace, robotics, electronics.",
+      "image_prompt": "precision CNC machined stainless steel metal components arranged on dark matte background, studio product photography, dramatic side lighting, sharp macro details, high-end industrial editorial style",
+      "image_size": "square",
+      "featured": true
+    },
+    {
+      "slug": "industrial-automation-modules",
+      "name": "Industrial Automation Control Modules",
+      "category": "Industrial Automation",
+      "tagline": "PLC-ready control units and I/O modules engineered for 24/7 production lines.",
+      "description": "Modular automation controllers, remote I/O stations and HMI panels designed for harsh factory environments. CE marked, UL compatible, with full wiring documentation and remote commissioning support.",
+      "features": [
+        "Modular PLC / remote I/O with EtherCAT, Modbus TCP, PROFINET",
+        "IP65 enclosures, -20°C to 60°C operating range",
+        "CE / FCC / RoHS certified, UL compatible design",
+        "Remote commissioning and multilingual technical support"
+      ],
+      "specs": {
+        "Communication": "EtherCAT / Modbus TCP / PROFINET",
+        "Protection": "IP65",
+        "Power": "24 V DC, redundant input",
+        "Warranty": "3 years",
+        "Service": "Remote commissioning included"
+      },
+      "applications": "Assembly lines, packaging machinery, conveyor systems, smart factories.",
+      "image_prompt": "industrial automation control module electronic device with status LEDs on dark aluminum surface, premium studio product photography, cool blue accent light, minimal composition, high-end technology catalog style",
+      "image_size": "square",
+      "featured": true
+    },
+    {
+      "slug": "custom-sheet-metal-fabrication",
+      "name": "Custom Sheet Metal Fabrication",
+      "category": "Metal Fabrication",
+      "tagline": "From laser-cut prototypes to welded, powder-coated production enclosures.",
+      "description": "Laser cutting, CNC bending, robotic welding and in-house powder coating for cabinets, enclosures, brackets and frames. DFM feedback within 24 hours of receiving your drawings.",
+      "features": [
+        "Fiber laser cutting up to 25 mm carbon steel",
+        "CNC press brake bending, robotic MIG/TIG welding",
+        "In-house powder coating & silk-screen printing",
+        "DFM review and 3D modeling before production"
+      ],
+      "specs": {
+        "Materials": "CRS, stainless 304/316, aluminum 5052/6061",
+        "Thickness": "0.5 - 25 mm",
+        "Max Sheet": "3000 x 1500 mm",
+        "Finish": "Powder coating, anodizing, brushing",
+        "MOQ": "1 prototype"
+      },
+      "applications": "Electrical cabinets, machine enclosures, kiosks, equipment frames.",
+      "image_prompt": "custom brushed aluminum sheet metal fabrication panels and brackets stacked neatly, studio lighting on light grey background, industrial product photography, crisp shadows, premium catalog look",
+      "image_size": "square",
+      "featured": true
+    },
+    {
+      "slug": "heavy-duty-hydraulic-cylinders",
+      "name": "Heavy-Duty Hydraulic Cylinders",
+      "category": "Hydraulic Systems",
+      "tagline": "Welded and tie-rod cylinders built for presses, construction and marine work.",
+      "description": "Custom hydraulic cylinders with bore sizes from 40 mm to 320 mm, hard chrome plated rods and honed tubes. 100% pressure tested at 1.5x rated pressure before shipment.",
+      "features": [
+        "Bore 40 - 320 mm, stroke up to 3000 mm, custom mounting",
+        "Hard chrome plated piston rod, honed steel tube",
+        "NOK / Parker seals for long service life",
+        "100% pressure tested with test report included"
+      ],
+      "specs": {
+        "Pressure": "Up to 31.5 MPa",
+        "Bore": "40 - 320 mm",
+        "Seals": "NOK / Parker",
+        "Testing": "1.5x rated pressure",
+        "MOQ": "1 piece"
+      },
+      "applications": "Hydraulic presses, construction machinery, marine, agriculture.",
+      "image_prompt": "heavy duty chrome plated hydraulic cylinder steel machinery component on dark oil-stained industrial background, professional product photography, dramatic rim lighting, mechanical engineering catalog style",
+      "image_size": "square",
+      "featured": false
+    },
+    {
+      "slug": "smart-led-industrial-lighting",
+      "name": "Smart LED Industrial Lighting",
+      "category": "Smart Lighting",
+      "tagline": "High-bay and linear fixtures with DALI / Zigbee control for warehouses and plants.",
+      "description": "Energy-efficient high-bay, tri-proof and linear LED fixtures with up to 170 lm/W efficacy, DALI-2 and Zigbee wireless control, and 5-year warranty for industrial environments.",
+      "features": [
+        "Up to 170 lm/W, DLC Premium / CE / RoHS certified",
+        "DALI-2, Zigbee 3.0 and microwave sensor options",
+        "IP65 / IK10, die-cast aluminum thermal design",
+        "5-year warranty, L70 > 100,000 hours"
+      ],
+      "specs": {
+        "Efficacy": "Up to 170 lm/W",
+        "Power Range": "50 - 500 W",
+        "Control": "DALI-2 / Zigbee / sensor",
+        "Rating": "IP65 / IK10",
+        "Warranty": "5 years"
+      },
+      "applications": "Warehouses, factories, logistics centers, sports facilities.",
+      "image_prompt": "modern smart LED industrial high bay lighting fixtures glowing in dark warehouse ceiling, architectural photography, deep blue dusk atmosphere, futuristic clean interior, editorial industrial style",
+      "image_size": "square",
+      "featured": false
+    },
+    {
+      "slug": "automated-conveyor-assembly-lines",
+      "name": "Automated Conveyor & Assembly Lines",
+      "category": "Industrial Automation",
+      "tagline": "Turnkey conveyor and assembly systems designed, built and commissioned end to end.",
+      "description": "Belt, roller and chain conveyor systems plus semi-automated assembly stations, delivered as turnkey projects: layout design, manufacturing, installation and operator training for factories worldwide.",
+      "features": [
+        "Belt / roller / chain / pallet conveyor systems",
+        "Semi-automated assembly stations with poka-yoke devices",
+        "Turnkey delivery: design, build, install, training",
+        "Overseas installation team available on site"
+      ],
+      "specs": {
+        "Payload": "Up to 2000 kg per station",
+        "Speed": "Custom, servo controlled",
+        "Delivery": "60 - 120 days turnkey",
+        "Installation": "On-site worldwide",
+        "After-sales": "24/7 remote + spare parts kit"
+      },
+      "applications": "Electronics, automotive parts, home appliances, e-commerce logistics.",
+      "image_prompt": "long modern automated conveyor assembly line in bright clean factory, robotic arms and workers in safety gear, wide angle industrial photography, airy minimal composition, high-end corporate editorial style",
+      "image_size": "square",
+      "featured": false
+    }
+  ]
+}

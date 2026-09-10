@@ -1,0 +1,53 @@
+# ==========================================================================
+#  B2B 外贸官网 —— 生产编排
+#  服务器部署：docker compose pull && docker compose up -d
+#  本地试跑：  docker compose up -d --build
+#  所有可变项（镜像地址、端口、邮箱、公司信息）均来自同目录 .env
+# ==========================================================================
+
+services:
+  app:
+    # 本地无 GHCR 镜像时自动 build；服务器上 compose pull 拉取 CI 推送的镜像
+    image: ${GHCR_IMAGE:-ghcr.io/your-github-name/your-repo:latest}
+    build:
+      context: .
+      dockerfile: Dockerfile
+    env_file:
+      - .env
+    volumes:
+      # SQLite 询盘数据持久化（命名卷，随容器升级不丢失）
+      - app_data:/app/data
+      # 静态资源共享给 Nginx 托管（首次启动自动用镜像内容初始化）
+      - app_static:/app/app/static
+    restart: unless-stopped
+    networks:
+      - webnet
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request,sys; sys.exit(0 if urllib.request.urlopen('http://127.0.0.1:8000/health', timeout=5).status == 200 else 1)"]
+      interval: 30s
+      timeout: 6s
+      retries: 3
+      start_period: 20s
+
+  nginx:
+    image: nginx:1.27-alpine
+    depends_on:
+      app:
+        condition: service_healthy
+    ports:
+      # 宿主机端口由 .env 的 NGINX_HTTP_PORT 控制（默认 8080）
+      - "${NGINX_HTTP_PORT:-8080}:80"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf:ro
+      - app_static:/usr/share/nginx/static:ro
+    restart: unless-stopped
+    networks:
+      - webnet
+
+volumes:
+  app_data:
+  app_static:
+
+networks:
+  webnet:
+    driver: bridge
